@@ -1,28 +1,32 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MexicanWave {
 
     public static String[] wave(String str) {
+        String[] result = new String[str.length()];
+        char[] temp = str.toCharArray();
+        if (!(str.indexOf(0) == ' ' || str.indexOf(temp.length) == ' ')) {
+            for (int i = 0; i < temp.length; i++) {
 
+                if (temp[i] == ' ') {
 
-        int spacePosition = str.indexOf(" ");
-        String replacement = new String(str.replaceAll(" ", ""));
-        String[] result = new String[replacement.length()];
-        char[] temp = replacement.toCharArray();
-        for (int i = 0; i < replacement.length(); i++) {
-            temp[i] = Character.toUpperCase(temp[i]);
-            result[i] = String.valueOf(temp);
-            temp[i] = Character.toLowerCase(temp[i]);
+                    i++;
+                }
+                temp[i] = Character.toUpperCase(temp[i]);
+                result[i] = String.valueOf(temp);
+                temp[i] = Character.toLowerCase(temp[i]);
+            }
         }
 
-
-        StringBuilder dest;
-        for (int i = 0; i < result.length; i++) {
-            dest = new StringBuilder(result[i]);
-            dest.insert(spacePosition, " ");
-            result[i] = dest.toString();
+        List<String> list = new ArrayList<String>();
+        for (String s : result) {
+            if (s != null && s.length() > 0) {
+                list.add(s);
+            }
         }
-        return result;
+        return list.toArray(new String[list.size()]);
     }
 
 
