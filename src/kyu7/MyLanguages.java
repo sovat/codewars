@@ -1,3 +1,5 @@
+package kyu7;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,9 +10,11 @@ Note: There will be no duplicate values.*/
 
 
 public class MyLanguages {
+
+
     public static List<String> myLanguages(final Map<String, Integer> results) {
         ArrayList<String> list = new ArrayList<>();
-
+        /*Сортировка мапы по значению*/
         Map<String, Integer> sorted =
                 results.entrySet().stream()
                         .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))

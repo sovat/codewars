@@ -1,3 +1,5 @@
+package kyu6;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +38,7 @@ public class MexicanWave {
 
 
     public static void main(String[] args) {
-        System.out.println(Arrays.asList(wave("two words")));
+        System.out.println(Arrays.asList(wave(" hamrm ldnbnounsyvh")));
     }
 
 }
