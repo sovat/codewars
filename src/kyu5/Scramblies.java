@@ -1,63 +1,36 @@
 package kyu5;
+/**
+ *Complete the function scramble(str1, str2) that returns true if a portion of str1 characters can be rearranged to match str2, otherwise returns false.
+ */
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+/**
+ * Массив размера 26 - количество букв в алфавите.
+ * Символ с - представляется в int формате. Он имеет значение той буквы, которая приходит из массива символов.
+ * 'a' - имеет значение 97. Производя операцию array[c - 'a']++, мы получаем индекс буквы в алфавите и увеличиваем значение под эти индексом.
+ * Затем проходимся по второй строке и уменьшаем значение под этим индексом.
+ * Если в массиве есть не отрицательные или равные нулю значения, то возвращаем ложь
+ */
 
 public class Scramblies {
 
-    public static void mapFilling(String str, HashMap<Character, Integer> map) {
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (map.containsKey(c)) {
-                map.put(c, map.get(c) + 1);
-            } else {
-                map.put(c, 1);
+    public static boolean scramble(String str1, String str2) {
+        int alphabetLenght = 26;
+        int[] array = new int[alphabetLenght];
+        for (char c : str2.toCharArray()) {
+            array[c - 'a']++;
+        }
+        for (char c : str1.toCharArray()) {
+            array[c - 'a']--;
+        }
+        for (int value : array) {
+            if (value > 0) {
+                return false;
             }
         }
-    }
-
-    public static boolean scramble(String str1, String str2) {
-        HashMap<Character, Integer> mapForStr1 = new HashMap<>();
-        HashMap<Character, Integer> mapForStr2 = new HashMap<>();
-        mapFilling(str1, mapForStr1);
-        mapFilling(str2, mapForStr2);
-        boolean result = false;
-        String[] chars2 = new String[mapForStr2.size()];
-        String chars1 = new String();
-        for (Map.Entry<Character, Integer> entry : mapForStr1.entrySet()) {
-            chars1 += entry.getKey();
-        }
-        int i = 0;
-        for (Map.Entry<Character, Integer> entry : mapForStr2.entrySet()) {
-            chars2[i] = entry.getKey().toString();
-            i++;
-        }
-
-        int[] int1 = new int[mapForStr1.size()];
-        int[] int2 = new int[mapForStr2.size()];
-        int k = 0;
-        for (Map.Entry<Character, Integer> entry : mapForStr1.entrySet()) {
-            int1[k] = entry.getValue();
-            k++;
-        }
-        k = 0;
-        for (Map.Entry<Character, Integer> entry : mapForStr2.entrySet()) {
-            int2[k] = entry.getValue();
-            k++;
-        }
-        for (int j = 0; j < chars2.length; j++) {
-            if (chars1.contains(chars2[j])) {
-                if(Arrays.equals(int1, int2)){
-                    result = true;
-                }
-
-            } else result = false;
-        }
-        return result;
+        return true;
     }
 
     public static void main(String[] args) {
-        System.out.println(scramble("rkqodlw", "world"));
+        System.out.println(scramble("aabbcamaomsccdd", "commas"));
     }
 }
