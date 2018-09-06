@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Snail {
     public static int[] snail(int[][] array) {
-        ArrayList<Integer> list = new ArrayList<>();
-        if (array.length <= 1){
+
+        if (array[0].length ==0) {
             return new int[0];
         }
+        ArrayList<Integer> list = new ArrayList<>();
         int n = array.length;
         int j, i;
         int t = 1;
@@ -19,14 +20,14 @@ public class Snail {
         int f;
         f = n;
         while (t <= n * n) {
-            //заполняем справа на лево
+            //заполняем справа налево
             for (j = s; j < f; ++j) {
                 list.add(array[i][j]);
                 ++t;
             }
             v = j - 1;
             --j;
-            //заполняем с верху вниз
+            //заполняем сверху вниз
             if (t <= n * n) {
                 for (i = r; i < f; ++i) {
                     list.add(array[i][j]);
@@ -35,7 +36,7 @@ public class Snail {
                 l = i - 1;
                 --i;
             }
-            //заполняем с лева на право
+            //заполняем слева направо
             if (t <= n * n) {
                 for (j = v - 1; j >= c; --j) {
                     list.add(array[i][j]);
@@ -43,13 +44,13 @@ public class Snail {
                 }
             }
             if (t <= n * n) {
-                //заполняем с низу верх
+                //заполняем снизу вверх
                 for (i = l - 1; i > d; --i) {
                     list.add(array[i][j + 1]);
                     ++t;
                 }
             }
-            //уменшаем параметры матрицы(что бы числа шли внутрь а не заполнялись поверх тех которы уже заполнены)
+            //уменьшаем параметры матрицы(что бы числа шли внутрь а не заполнялись поверх тех которы уже заполнены)
             --f;
 
             ++s;
@@ -63,13 +64,15 @@ public class Snail {
             arr[k] = list.get(k);
             System.out.print(arr[k]);
         }
-
         return arr;
     }
 
     public static void main(String[] args) {
         int[][] array
-                = {{0}};
+                = {{1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}};
+
         int[] r = {1, 2, 3, 6, 9, 8, 7, 4, 5};
         snail(array);
     }
