@@ -1,9 +1,6 @@
 package kyu5;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WeightSort {
 
@@ -19,14 +16,14 @@ public class WeightSort {
 
     public static void main(String[] args) {
 
-        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        TreeMap<Integer, ArrayList<Integer>> map = new TreeMap<>();
 
 
         Integer[] arr = {56, 65, 74, 100, 99, 68, 86, 180, 90};
 
         for (int i = 0; i < arr.length; i++) {
             ArrayList<Integer> list = new ArrayList();
-            for (int j = i; j < arr.length; j++) {
+            for (int j = 0; j < arr.length; j++) {
                 if (summ(arr[i]) == summ(arr[j])) {
                     list.add(arr[j]);
 
