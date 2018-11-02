@@ -1,12 +1,14 @@
 package kyu5;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WeightSort {
 
-    public static Integer summ(Integer element) {
-        int res = 0;
-        int temp = element;
+    public static Long summ(String element) {
+
+        long res = 0;
+        long temp = Long.valueOf(element);
         while (temp != 0) {
             res += temp % 10;
             temp /= 10;
@@ -14,30 +16,35 @@ public class WeightSort {
         return res;
     }
 
-    public static void main(String[] args) {
+    public static String orderWeight(String strng) {
 
-        TreeMap<Integer, ArrayList<Integer>> map = new TreeMap<>();
+        if (strng.isEmpty() || strng.length() == 1){
+            return strng;
+        }
 
-
-        Integer[] arr = {56, 65, 74, 100, 99, 68, 86, 180, 90};
-
-        for (int i = 0; i < arr.length; i++) {
-            ArrayList<Integer> list = new ArrayList();
-            for (int j = 0; j < arr.length; j++) {
-                if (summ(arr[i]) == summ(arr[j])) {
-                    list.add(arr[j]);
-
+        String[] strings = strng.split(" ");
+        TreeMap<Long, List<String>> map = new TreeMap<>();
+        for (int i = 0; i < strings.length; i++) {
+            List<String> list = new ArrayList();
+            for (int j = 0; j < strings.length; j++) {
+                if (summ(strings[i]) == summ(strings[j])) {
+                    list.add(strings[j]);
                 }
             }
-            map.put(summ(arr[i]), list);
-
-
+            list = list.stream().sorted().collect(Collectors.toList());
+            map.put(summ(strings[i]), list);
         }
-
+        String str = "";
         for (Map.Entry entry : map.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + " Value: "
-                    + entry.getValue());
-        }
 
+            str += entry.getValue().toString();
+        }
+        return str.replaceAll("[\\W]", " ").replaceAll("  "," " ).trim();
+    }
+
+
+    public static void main(String[] args) {
+
+        System.out.println(orderWeight("59544965313"));
     }
 }
