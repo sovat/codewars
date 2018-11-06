@@ -1,4 +1,4 @@
-package kyu7.FunctionalProgramming;
+package kyu7.FunctionalProgramming.part1;
 
 public class Student {
 
