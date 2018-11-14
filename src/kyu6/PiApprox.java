@@ -3,6 +3,7 @@ package kyu6;
 import java.math.BigDecimal;
 
 public class PiApprox {
+    // PI = 4 - 4/3 + 4/5 - 4/7 + ...
     public static String iterPi2String(Double epsilon) {
         int n = 1;
         double pi = 4.;
