@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-/*Given a dictionary/hash/object of languages and your respective test results, return the list of languages where your test score is at least 60, in descending order of the results.
+/*Given a dictionary/hash/object of languages and your respective stream_test.test results, return the list of languages where your stream_test.test score is at least 60, in descending order of the results.
 
 Note: There will be no duplicate values.*/
 
